@@ -3,6 +3,829 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vortex Seguros | Planos de SaÃºde para Profissionais Liberais</title>
+  <meta name="description" content="Especialistas em planos de saÃºde por CNPJ para mÃ©dicos e profissionais liberais. Troque de plano sem complicaÃ§Ã£o e com a rede que vocÃª merece." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ââ Reset & Base âââââââââââââââââââââââââââââââââââââââ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1a2340;
+      background: #fff;
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ââ Tokens âââââââââââââââââââââââââââââââââââââââââââââ */
+    :root {
+      --blue:       #2A5BAD;
+      --blue-dark:  #1a3e7c;
+      --blue-light: #e8f0fb;
+      --orange:     #F5831F;
+      --orange-dark:#d96a10;
+      --gray-50:    #f8f9fc;
+      --gray-100:   #f1f3f9;
+      --gray-200:   #e2e7f0;
+      --gray-500:   #7a8499;
+      --gray-800:   #2e3a52;
+      --white:      #ffffff;
+      --radius:     12px;
+      --radius-lg:  20px;
+      --shadow:     0 4px 24px rgba(42,91,173,.10);
+      --shadow-lg:  0 12px 48px rgba(42,91,173,.16);
+    }
+
+    /* ââ Utility ââââââââââââââââââââââââââââââââââââââââââââ */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .section   { padding: 96px 0; }
+    .section--alt { background: var(--gray-50); }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--blue-light); color: var(--blue);
+      font-size: .75rem; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; padding: 6px 14px; border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .badge::before { content: ''; width: 6px; height: 6px; background: var(--orange); border-radius: 50%; }
+
+    h1,h2,h3,h4 { line-height: 1.2; font-weight: 800; }
+    h1 { font-size: clamp(2rem, 5vw, 3.25rem); }
+    h2 { font-size: clamp(1.6rem, 4vw, 2.5rem); }
+    h3 { font-size: 1.2rem; }
+
+    .text-orange { color: var(--orange); }
+    .text-blue   { color: var(--blue); }
+    .text-center { text-align: center; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      font-size: 1rem; font-weight: 700; border-radius: var(--radius);
+      padding: 16px 32px; cursor: pointer; border: none; transition: all .2s ease;
+      white-space: nowrap;
+    }
+    .btn--primary {
+      background: var(--orange); color: #fff;
+      box-shadow: 0 4px 20px rgba(245,131,31,.35);
+    }
+    .btn--primary:hover { background: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(245,131,31,.4); }
+    .btn--outline {
+      background: transparent; color: var(--blue);
+      border: 2px solid var(--blue);
+    }
+    .btn--outline:hover { background: var(--blue); color: #fff; }
+    .btn--white {
+      background: #fff; color: var(--blue);
+      box-shadow: 0 4px 20px rgba(0,0,0,.12);
+    }
+    .btn--white:hover { background: var(--blue-light); }
+    .btn--lg { padding: 20px 40px; font-size: 1.1rem; border-radius: var(--radius-lg); }
+
+    /* ââ Navbar âââââââââââââââââââââââââââââââââââââââââââââ */
+    .navbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 16px 0;
+    }
+    .navbar__inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .navbar__logo { height: 40px; width: auto; }
+    .navbar__cta  { display: flex; align-items: center; gap: 12px; }
+
+    /* ââ Hero âââââââââââââââââââââââââââââââââââââââââââââââ */
+    .hero {
+      background: linear-gradient(135deg, #0d1f45 0%, #1a3e7c 50%, #2A5BAD 100%);
+      padding: 80px 0 96px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero__inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .hero__content { position: relative; z-index: 1; }
+    .hero__eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(245,131,31,.18); color: #ffb266;
+      font-size: .8rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 6px 14px; border-radius: 999px;
+      margin-bottom: 24px;
+    }
+    .hero__eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--orange); border-radius: 50%; }
+    .hero h1 { color: #fff; margin-bottom: 24px; }
+    .hero h1 em { color: var(--orange); font-style: normal; }
+    .hero__sub { color: rgba(255,255,255,.8); font-size: 1.1rem; margin-bottom: 40px; max-width: 480px; }
+    .hero__ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero__trust {
+      display: flex; align-items: center; gap: 10px; margin-top: 32px;
+      color: rgba(255,255,255,.55); font-size: .85rem;
+    }
+    .hero__trust-dots { display: flex; gap: 4px; }
+    .hero__trust-dots span {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--blue-light); border: 2px solid rgba(255,255,255,.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .65rem; font-weight: 700; color: var(--blue);
+    }
+    .hero__card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      backdrop-filter: blur(8px);
+    }
+    .hero__card-title {
+      color: #fff; font-size: .85rem; font-weight: 600; letter-spacing: .05em;
+      text-transform: uppercase; opacity: .7; margin-bottom: 20px;
+    }
+    .pain-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.08);
+      color: rgba(255,255,255,.9); font-size: .95rem;
+    }
+    .pain-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .pain-item__icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: rgba(245,131,31,.2); color: var(--orange);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 1rem;
+    }
+
+    /* ââ Social Proof Strip âââââââââââââââââââââââââââââââââ */
+    .strip {
+      background: var(--blue);
+      padding: 20px 0;
+    }
+    .strip__inner {
+      display: flex; align-items: center; justify-content: center;
+      gap: 40px; flex-wrap: wrap;
+    }
+    .strip__item {
+      display: flex; align-items: center; gap: 10px;
+      color: rgba(255,255,255,.85); font-size: .9rem;
+    }
+    .strip__item-icon { color: var(--orange); font-size: 1.1rem; }
+
+    /* ââ Pain Section âââââââââââââââââââââââââââââââââââââââ */
+    .pain-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px; margin-top: 56px;
+    }
+    .pain-card {
+      background: #fff; border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg); padding: 28px;
+      transition: all .25s ease;
+    }
+    .pain-card:hover { border-color: var(--blue); box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+    .pain-card__icon {
+      width: 52px; height: 52px; border-radius: var(--radius);
+      background: var(--blue-light); color: var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 16px;
+    }
+    .pain-card h3 { margin-bottom: 8px; color: var(--gray-800); }
+    .pain-card p  { color: var(--gray-500); font-size: .95rem; }
+
+    /* ââ Solution Section âââââââââââââââââââââââââââââââââââ */
+    .solution__inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .solution__features { display: flex; flex-direction: column; gap: 28px; margin-top: 40px; }
+    .feature-item { display: flex; gap: 16px; align-items: flex-start; }
+    .feature-item__icon {
+      width: 48px; height: 48px; border-radius: var(--radius);
+      background: var(--blue); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .feature-item h3 { margin-bottom: 4px; font-size: 1rem; }
+    .feature-item p  { color: var(--gray-500); font-size: .9rem; }
+
+    .solution__visual {
+      background: linear-gradient(145deg, var(--blue) 0%, var(--blue-dark) 100%);
+      border-radius: var(--radius-lg); padding: 40px; color: #fff;
+      position: relative; overflow: hidden;
+    }
+    .solution__visual::after {
+      content: ''; position: absolute; bottom: -30px; right: -30px;
+      width: 180px; height: 180px; border-radius: 50%;
+      background: rgba(245,131,31,.15);
+    }
+    .solution__visual-title { font-size: 1rem; opacity: .7; margin-bottom: 24px; text-transform: uppercase; letter-spacing: .06em; }
+    .operator-list { display: flex; flex-wrap: wrap; gap: 12px; }
+    .operator-tag {
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+      color: rgba(255,255,255,.9); padding: 8px 16px;
+      border-radius: 999px; font-size: .85rem; font-weight: 600;
+    }
+    .solution__highlight {
+      margin-top: 32px; padding: 20px; border-radius: var(--radius);
+      background: rgba(245,131,31,.15); border-left: 3px solid var(--orange);
+    }
+    .solution__highlight p { font-size: .9rem; color: rgba(255,255,255,.9); line-height: 1.5; }
+
+    /* ââ How it Works âââââââââââââââââââââââââââââââââââââââ */
+    .steps {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 40px;
+      margin-top: 64px; position: relative;
+    }
+    .steps::before {
+      content: ''; position: absolute; top: 32px; left: calc(16.6% + 16px); right: calc(16.6% + 16px);
+      height: 2px; background: repeating-linear-gradient(90deg, var(--blue) 0, var(--blue) 8px, transparent 8px, transparent 16px);
+      z-index: 0;
+    }
+    .step { text-align: center; position: relative; }
+    .step__number {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--blue); color: #fff;
+      font-size: 1.4rem; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; position: relative; z-index: 1;
+      box-shadow: 0 4px 20px rgba(42,91,173,.3);
+    }
+    .step h3 { margin-bottom: 8px; }
+    .step p  { color: var(--gray-500); font-size: .95rem; max-width: 240px; margin: 0 auto; }
+
+    /* ââ Testimonial ââââââââââââââââââââââââââââââââââââââââ */
+    .testimonial-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px; margin-top: 56px;
+    }
+    .testimonial-card {
+      background: #fff; border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg); padding: 28px;
+    }
+    .testimonial-card__stars { color: var(--orange); font-size: 1rem; margin-bottom: 14px; }
+    .testimonial-card blockquote { color: var(--gray-800); font-size: .95rem; line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+    .testimonial-card__author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-card__avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--blue-light); color: var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: .9rem;
+    }
+    .testimonial-card__name { font-weight: 700; font-size: .9rem; }
+    .testimonial-card__role { color: var(--gray-500); font-size: .8rem; }
+
+    /* ââ CTA Section ââââââââââââââââââââââââââââââââââââââââ */
+    .cta-section {
+      background: linear-gradient(135deg, #0d1f45 0%, #1a3e7c 60%, #2A5BAD 100%);
+      padding: 96px 0;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; top: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 480px; height: 480px; border-radius: 50%;
+      background: rgba(245,131,31,.08);
+      pointer-events: none;
+    }
+    .cta-section h2 { color: #fff; margin-bottom: 16px; }
+    .cta-section p  { color: rgba(255,255,255,.75); font-size: 1.1rem; margin-bottom: 40px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .cta-buttons    { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-section .sub { color: rgba(255,255,255,.5); font-size: .85rem; margin-top: 20px; }
+
+    /* ââ Form Section âââââââââââââââââââââââââââââââââââââââ */
+    .form-section { background: var(--gray-50); }
+    .form-wrapper {
+      max-width: 560px; margin: 0 auto;
+      background: #fff; border-radius: var(--radius-lg);
+      padding: 48px; box-shadow: var(--shadow-lg);
+      border: 1px solid var(--gray-200);
+    }
+    .form-title   { text-align: center; margin-bottom: 8px; }
+    .form-sub     { text-align: center; color: var(--gray-500); margin-bottom: 32px; font-size: .95rem; }
+    .form-group   { margin-bottom: 20px; }
+    label         { display: block; font-size: .85rem; font-weight: 600; margin-bottom: 6px; color: var(--gray-800); }
+    input, select {
+      width: 100%; padding: 14px 16px; border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius); font-size: .95rem; font-family: inherit;
+      color: var(--gray-800); background: #fff; transition: border-color .2s;
+      outline: none;
+    }
+    input:focus, select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(42,91,173,.08); }
+    .form-submit  { width: 100%; margin-top: 8px; }
+    .form-privacy { text-align: center; color: var(--gray-500); font-size: .8rem; margin-top: 12px; }
+    .form-privacy a { color: var(--blue); text-decoration: underline; }
+
+    /* ââ Footer âââââââââââââââââââââââââââââââââââââââââââââ */
+    footer {
+      background: #0d1f45; color: rgba(255,255,255,.65);
+      padding: 40px 0;
+    }
+    .footer__inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer__logo { height: 32px; opacity: .9; }
+    .footer__links { display: flex; gap: 24px; font-size: .85rem; }
+    .footer__links a:hover { color: #fff; }
+    .footer__copy  { font-size: .8rem; }
+
+    /* ââ WhatsApp FAB âââââââââââââââââââââââââââââââââââââââ */
+    .whatsapp-fab {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: #25D366; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; box-shadow: 0 4px 20px rgba(37,211,102,.4);
+      cursor: pointer; transition: transform .2s, box-shadow .2s;
+    }
+    .whatsapp-fab:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,.5); }
+
+    /* ââ Responsive âââââââââââââââââââââââââââââââââââââââââ */
+
+    /* Tablet */
+    @media (max-width: 900px) {
+      .hero__inner, .solution__inner { grid-template-columns: 1fr; gap: 40px; }
+      .steps { grid-template-columns: 1fr; gap: 32px; }
+      .steps::before { display: none; }
+      .navbar__cta .btn--outline { display: none; }
+      .hero__card { display: none; } /* as dores jÃ¡ aparecem na seÃ§Ã£o logo abaixo */
+      .hero__inner { grid-template-columns: 1fr; }
+      .hero__trust-dots span { width: 24px; height: 24px; font-size: .6rem; }
+    }
+
+    /* Mobile (â¤ 480px) â o tamanho real de um celular */
+    @media (max-width: 480px) {
+      /* Geral */
+      .section        { padding: 52px 0; }
+      .container      { padding: 0 16px; }
+
+      /* Navbar */
+      .navbar         { padding: 12px 0; }
+      .navbar__logo   { height: 32px; }
+      .navbar__cta .btn { padding: 10px 16px; font-size: .85rem; }
+
+      /* Hero */
+      .hero           { padding: 44px 0 56px; }
+      .hero__eyebrow  { font-size: .7rem; }
+      h1              { font-size: 1.75rem; }
+      .hero__sub      { font-size: 1rem; }
+      .hero__ctas     { flex-direction: column; }
+      .hero__ctas .btn { width: 100%; justify-content: center; }
+      .btn--lg        { padding: 16px 24px; font-size: 1rem; }
+      .hero__trust    { font-size: .8rem; }
+
+      /* Trust strip â scroll horizontal para nÃ£o quebrar */
+      .strip__inner {
+        gap: 0;
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding: 0 16px;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+      .strip__inner::-webkit-scrollbar { display: none; }
+      .strip__item    { flex-shrink: 0; padding: 0 16px 0 0; font-size: .82rem; }
+
+      /* SeÃ§Ã£o dores */
+      .pain-grid      { grid-template-columns: 1fr; gap: 16px; }
+      .pain-card      { padding: 20px; }
+
+      /* Steps */
+      .step p         { max-width: 100%; }
+
+      /* Solution */
+      .solution__visual { padding: 24px; }
+
+      /* Depoimentos */
+      .testimonial-grid { grid-template-columns: 1fr; }
+
+      /* Badge Google */
+      .testimonial-grid + div,
+      [style*="inline-flex"] { flex-wrap: wrap; gap: 8px; padding: 10px 16px; }
+
+      /* FormulÃ¡rio */
+      .form-wrapper   { padding: 24px 16px; border-radius: var(--radius); }
+      .form-title     { font-size: 1.4rem; }
+      input, select   { font-size: 1rem; padding: 13px 14px; } /* evita zoom automÃ¡tico no iOS */
+
+      /* CTA final */
+      .cta-section    { padding: 64px 0; }
+      .cta-section h2 { font-size: 1.6rem; }
+      .cta-buttons    { flex-direction: column; align-items: stretch; }
+      .cta-buttons .btn { width: 100%; justify-content: center; }
+
+      /* RodapÃ© */
+      .footer__inner  { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .footer__links  { flex-wrap: wrap; gap: 12px; }
+      .footer__copy   { font-size: .75rem; }
+
+      /* FAB WhatsApp â um pouco menor no mobile */
+      .whatsapp-fab   { width: 52px; height: 52px; bottom: 20px; right: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ââ Navbar ââââââââââââââââââââââââââââââââââââââââââââ -->
+  <nav class="navbar">
+    <div class="container navbar__inner">
+      <img class="navbar__logo" src="logo.png" alt="Vortex Seguros" />
+      <div class="navbar__cta">
+        <a href="#contato" class="btn btn--outline">Falar com consultor</a>
+          <a href="https://wa.me/552137987776?text=OlÃ¡!%20Vim%20pelo%20site%20e%20gostaria%20de%20uma%20cotaÃ§Ã£o%20para%20trocar%20meu%20plano%20de%20saÃºde." class="btn btn--primary" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            WhatsApp
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ââ Hero ââââââââââââââââââââââââââââââââââââââââââââââ -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <div class="hero__eyebrow">Para profissionais liberais com CNPJ</div>
+        <h1>Seu plano aumentou o preÃ§o de novo? <em>VocÃª merece um melhor.</em></h1>
+        <p class="hero__sub">
+          Especialistas em planos de saÃºde por CNPJ para profissionais liberais.
+          Troque de plano sem complicaÃ§Ã£o e tenha a cobertura que vocÃª e sua famÃ­lia realmente merecem.
+        </p>
+        <div class="hero__ctas">
+          <a href="https://wa.me/552137987776?text=OlÃ¡!%20Vim%20pelo%20site%20e%20gostaria%20de%20uma%20cotaÃ§Ã£o%20para%20trocar%20meu%20plano%20de%20saÃºde." class="btn btn--primary btn--lg" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Quero trocar meu plano
+          </a>
+          <a href="#como-funciona" class="btn btn--white btn--lg">Como funciona â</a>
+        </div>
+        <div class="hero__trust">
+          <div class="hero__trust-dots">
+            <span>MP</span><span>CA</span><span>RF</span>
+          </div>
+          <span>Profissionais liberais que jÃ¡ trocaram com a Vortex</span>
+        </div>
+      </div>
+
+      <div class="hero__card">
+        <p class="hero__card-title">VocÃª vive isso todo ano?</p>
+        <div class="pain-item">
+          <div class="pain-item__icon">ð</div>
+          <span>Reajuste de 20% ou mais na hora de renovar</span>
+        </div>
+        <div class="pain-item">
+          <div class="pain-item__icon">ð¥</div>
+          <span>O hospital que vocÃª precisa nÃ£o estÃ¡ na rede</span>
+        </div>
+        <div class="pain-item">
+          <div class="pain-item__icon">ð¨âð©âð§</div>
+          <span>Cobertura insuficiente para toda a famÃ­lia</span>
+        </div>
+        <div class="pain-item">
+          <div class="pain-item__icon">ð¤·</div>
+          <span>NinguÃ©m te explica o que vocÃª estÃ¡ pagando</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ââ Trust Strip ââââââââââââââââââââââââââââââââââââââââ -->
+  <div class="strip">
+    <div class="container strip__inner">
+      <div class="strip__item"><span class="strip__item-icon">ð</span> +20 anos no mercado carioca</div>
+      <div class="strip__item"><span class="strip__item-icon">â</span> Sem custo para o contratante</div>
+      <div class="strip__item"><span class="strip__item-icon">â­</span> 5,0 â 110 avaliaÃ§Ãµes no Google</div>
+      <div class="strip__item"><span class="strip__item-icon">ð</span> CotaÃ§Ã£o em poucas horas</div>
+    </div>
+  </div>
+
+  <!-- ââ Pain Section âââââââââââââââââââââââââââââââââââââââ -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center">
+        <div class="badge">Sua realidade</div>
+        <h2>A maioria dos profissionais que me procura <span class="text-orange">jÃ¡ tem plano.</span><br />SÃ³ quer um melhor.</h2>
+        <p style="color:var(--gray-500);margin-top:16px;max-width:560px;margin-left:auto;margin-right:auto;">
+          Profissionais liberais pagam caro pelo plano de saÃºde, mas frequentemente ficam presos
+          em contratos que nÃ£o entregam o que prometem.
+        </p>
+      </div>
+      <div class="pain-grid">
+        <div class="pain-card">
+          <div class="pain-card__icon">ð¸</div>
+          <h3>Reajuste abusivo na renovaÃ§Ã£o</h3>
+          <p>O plano sobe todo ano acima da inflaÃ§Ã£o e vocÃª aceita porque trocar parece complicado. NÃ£o precisa ser assim.</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-card__icon">ð¥</div>
+          <h3>Rede hospitalar insuficiente</h3>
+          <p>O hospital de referÃªncia, o especialista de confianÃ§a ou a clÃ­nica que vocÃª precisa estÃ£o fora da cobertura.</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-card__icon">ð</div>
+          <h3>Processo de troca parece trabalhoso</h3>
+          <p>CarÃªncia, documentaÃ§Ã£o, negociaÃ§Ã£o com operadora... parece um problema grande. A Vortex cuida de tudo por vocÃª.</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-card__icon">ð</div>
+          <h3>Falta de comparativo transparente</h3>
+          <p>Ã difÃ­cil saber se o plano que vocÃª tem Ã© realmente o melhor custo-benefÃ­cio para o seu perfil e do seu CNPJ.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ââ Solution Section ââââââââââââââââââââââââââââââââââ -->
+  <section class="section section--alt">
+    <div class="container solution__inner">
+      <div>
+        <div class="badge">Como a Vortex trabalha</div>
+        <h2>Um consultor que entende sua realidade â e trabalha para o <span class="text-orange">seu bolso.</span></h2>
+        <div class="solution__features">
+          <div class="feature-item">
+            <div class="feature-item__icon">ð¯</div>
+            <div>
+              <h3>Especializado no seu perfil</h3>
+              <p>Foco em profissionais liberais que contratam pelo CNPJ â mÃ©dicos, advogados, dentistas, engenheiros e outros. ConheÃ§o as nuances desse mercado.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item__icon">âï¸</div>
+            <div>
+              <h3>Comparativo honesto e sem viÃ©s</h3>
+              <p>Apresento as melhores opÃ§Ãµes do mercado com todas as coberturas, redes e preÃ§os lado a lado. VocÃª decide.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item__icon">ð¡ï¸</div>
+            <div>
+              <h3>Suporte durante e depois</h3>
+              <p>Meu trabalho nÃ£o termina na assinatura. Estou disponÃ­vel para resolver qualquer questÃ£o com a operadora.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item__icon">â¡</div>
+            <div>
+              <h3>Agilidade no processo de troca</h3>
+              <p>Da cotaÃ§Ã£o Ã  ativaÃ§Ã£o do novo plano, cuido de toda a burocracia para que vocÃª nÃ£o perca tempo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution__visual">
+        <p class="solution__visual-title">As maiores operadoras do Brasil</p>
+        <div class="operator-list">
+          <span class="operator-tag">Amil</span>
+          <span class="operator-tag">Bradesco SaÃºde</span>
+          <span class="operator-tag">SulAmÃ©rica</span>
+          <span class="operator-tag">Porto Seguro</span>
+        </div>
+        <p style="color:rgba(255,255,255,.65);font-size:.85rem;margin-top:16px;line-height:1.5;">
+          Trabalho com as operadoras lÃ­deres de mercado â as que tÃªm as maiores redes credenciadas,
+          os melhores hospitais e a estrutura para atender profissionais que nÃ£o aceitam plano ruim.
+        </p>
+        <div class="solution__highlight">
+          <p>
+            ð¡ <strong>NÃ£o trabalho para nenhuma operadora.</strong> Trabalho para vocÃª.
+            Apresento as opÃ§Ãµes de forma independente â vocÃª escolhe a melhor para o seu caso.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ââ How it Works âââââââââââââââââââââââââââââââââââââââ -->
+  <section class="section" id="como-funciona">
+    <div class="container text-center">
+      <div class="badge">Processo simples</div>
+      <h2>Trocar de plano Ã© mais fÃ¡cil<br />do que vocÃª imagina.</h2>
+      <p style="color:var(--gray-500);margin-top:16px;max-width:480px;margin-left:auto;margin-right:auto;">
+        Em 3 passos vocÃª vai do plano que te frustra para o plano que vocÃª merece.
+      </p>
+      <div class="steps">
+        <div class="step">
+          <div class="step__number">1</div>
+          <h3>Me conta sua situaÃ§Ã£o</h3>
+          <p>VocÃª me diz o que tem hoje, o que nÃ£o estÃ¡ funcionando e o que Ã© prioridade para vocÃª e sua famÃ­lia.</p>
+        </div>
+        <div class="step">
+          <div class="step__number">2</div>
+          <h3>Apresento as melhores opÃ§Ãµes</h3>
+          <p>FaÃ§o um comparativo personalizado das operadoras que melhor se encaixam no seu perfil e CNPJ.</p>
+        </div>
+        <div class="step">
+          <div class="step__number">3</div>
+          <h3>VocÃª escolhe, eu resolvo tudo</h3>
+          <p>ApÃ³s sua decisÃ£o, cuido de toda a documentaÃ§Ã£o, negociaÃ§Ã£o e ativaÃ§Ã£o do novo plano.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ââ Testimonials âââââââââââââââââââââââââââââââââââââââ -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="text-center">
+        <div class="badge">Quem jÃ¡ trocou</div>
+        <h2>Profissionais que <span class="text-orange">pararam de pagar caro</span><br />por menos do que mereciam.</h2>
+        <div style="display:inline-flex;align-items:center;gap:12px;margin-top:20px;background:#fff;border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:12px 24px;box-shadow:var(--shadow);">
+          <img src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg" alt="Google" style="height:20px;" />
+          <span style="font-size:1.1rem;font-weight:800;color:#1a2340;">5,0</span>
+          <span style="color:#FBBC04;font-size:1.1rem;letter-spacing:1px;">âââââ</span>
+          <span style="color:var(--gray-500);font-size:.9rem;">110 avaliaÃ§Ãµes</span>
+        </div>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">âââââ</div>
+          <blockquote>
+            "Atendimento muito humano. NÃ£o me senti em nenhum momento sendo direcionado a produtos mais caros, e sim ao que resolveria meu problema. Tirou todas as dÃºvidas no pÃ³s-venda. Merece 5 estrelas, parabÃ©ns pelo profissionalismo!"
+          </blockquote>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">AS</div>
+            <div>
+              <div class="testimonial-card__name">Adriano Sacramento</div>
+              <div class="testimonial-card__role">AvaliaÃ§Ã£o Google â­ 5,0</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">âââââ</div>
+          <blockquote>
+            "Muito boa experiÃªncia. Equipe atenciosa e ajudou em tudo que precisei. Me deu muita seguranÃ§a e confianÃ§a. Obrigada pelo apoio."
+          </blockquote>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">RS</div>
+            <div>
+              <div class="testimonial-card__name">Rose Santos</div>
+              <div class="testimonial-card__role">AvaliaÃ§Ã£o Google â­ 5,0</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">âââââ</div>
+          <blockquote>
+            "Muito simpÃ¡tico e atencioso! Sempre prestativo e disponÃ­vel para tirar qualquer dÃºvida."
+          </blockquote>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">VA</div>
+            <div>
+              <div class="testimonial-card__name">Valeria Alves</div>
+              <div class="testimonial-card__role">AvaliaÃ§Ã£o Google â­ 5,0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ââ Form Section âââââââââââââââââââââââââââââââââââââââ -->
+  <section class="section" id="contato">
+    <div class="container">
+      <div class="form-wrapper">
+        <div class="badge" style="display:flex;justify-content:center;">CotaÃ§Ã£o gratuita</div>
+        <h2 class="form-title">Pronto para um plano melhor?</h2>
+        <p class="form-sub">Preencha abaixo e eu entro em contato em poucas horas com as melhores opÃ§Ãµes para o seu perfil.</p>
+        <form id="lead-form">
+          <div class="form-group">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" placeholder="JoÃ£o Silva" required />
+          </div>
+          <div class="form-group">
+            <label for="cnpj">Possui CNPJ ativo?</label>
+            <select id="cnpj" name="cnpj" required>
+              <option value="" disabled selected>Selecione</option>
+              <option>Sim, tenho CNPJ ativo</option>
+              <option>NÃ£o tenho CNPJ</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="vidas">Quantas pessoas precisam de cobertura?</label>
+            <select id="vidas" name="vidas" required>
+              <option value="" disabled selected>Selecione</option>
+              <option value="1">1 vida</option>
+              <option value="2">2 vidas</option>
+              <option value="3">3 vidas ou mais</option>
+            </select>
+            <p id="vidas-hint" style="display:none;margin-top:6px;font-size:.82rem;color:var(--orange);font-weight:600;">
+              â ï¸ Com 1 vida, as opÃ§Ãµes via CNPJ sÃ£o limitadas. Entre em contato para entendermos sua situaÃ§Ã£o.
+            </p>
+          </div>
+          <div class="form-group">
+            <label for="operadora">Qual sua operadora atual?</label>
+            <select id="operadora" name="operadora" required>
+              <option value="" disabled selected>Selecione</option>
+              <option>Hapvida</option>
+              <option>Bradesco SaÃºde</option>
+              <option>Amil</option>
+              <option>SulAmÃ©rica</option>
+              <option>Unimed</option>
+              <option>Porto Seguro SaÃºde</option>
+              <option>Prevent Senior</option>
+              <option>Assim SaÃºde</option>
+              <option>Outra operadora</option>
+              <option>NÃ£o tenho plano de saÃºde atualmente</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="telefone">WhatsApp</label>
+            <input type="tel" id="telefone" name="telefone" placeholder="(21) 99999-9999" required />
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail <span style="color:var(--gray-500);font-weight:400;font-size:.82rem;">(opcional)</span></label>
+            <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" />
+          </div>
+          <button type="submit" class="btn btn--primary btn--lg form-submit">
+            Quero minha cotaÃ§Ã£o gratuita â
+          </button>
+          <p class="form-privacy">
+            Sem spam. Seus dados sÃ£o usados somente para entrar em contato com vocÃª.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ââ CTA Section ââââââââââââââââââââââââââââââââââââââââ -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Chega de pagar mais<br />e receber menos.</h2>
+      <p>Uma conversa de 15 minutos pode ser suficiente para vocÃª entender se estÃ¡ no plano certo. Sem compromisso.</p>
+      <div class="cta-buttons">
+        <a href="https://wa.me/552137987776?text=OlÃ¡%20Alessandro!%20Vim%20pelo%20site%20da%20Vortex%20e%20gostaria%20de%20conversar%20sobre%20meu%20plano%20de%20saÃºde." class="btn btn--primary btn--lg" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Falar no WhatsApp agora
+        </a>
+        <a href="tel:+552137987776" class="btn btn--white btn--lg">
+          ð (21) 3798-7776
+        </a>
+      </div>
+      <p class="sub">â CotaÃ§Ã£o gratuita &nbsp;&nbsp; â Sem compromisso &nbsp;&nbsp; â Resposta em poucas horas</p>
+    </div>
+  </section>
+
+  <!-- ââ Footer âââââââââââââââââââââââââââââââââââââââââââââ -->
+  <footer>
+    <div class="container footer__inner">
+      <img class="footer__logo" src="logo-white.png" alt="Vortex Seguros" />
+      <div class="footer__links">
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#contato">Contato</a>
+        <a href="tel:+552137987776">(21) 3798-7776</a>
+      </div>
+      <p class="footer__copy">Â© 2025 Vortex Seguros. CNPJ 42.974.952/0001-56 &nbsp;|&nbsp; SUSEP 212124642</p>
+    </div>
+  </footer>
+
+  <!-- ââ WhatsApp FAB âââââââââââââââââââââââââââââââââââââââ -->
+  <a class="whatsapp-fab" href="https://wa.me/552137987776?text=OlÃ¡!%20Vim%20pelo%20site%20da%20Vortex%20Seguros." target="_blank" title="Falar no WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </a>
+
+  <script>
+    // FormulÃ¡rio â redireciona para WhatsApp com os dados preenchidos
+    // Aviso dinÃ¢mico para 1 vida
+    document.getElementById('vidas').addEventListener('change', function() {
+      const hint = document.getElementById('vidas-hint');
+      hint.style.display = this.value === '1' ? 'block' : 'none';
+    });
+
+    // Envio do formulÃ¡rio â abre WhatsApp com dados preenchidos
+    document.getElementById('lead-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nome      = document.getElementById('nome').value;
+      const cnpj      = document.getElementById('cnpj').value;
+      const vidas     = document.getElementById('vidas').value;
+      const operadora = document.getElementById('operadora').value;
+      const telefone  = document.getElementById('telefone').value;
+      const email     = document.getElementById('email').value;
+      const numero    = '552137987776';
+      const emailLine = email ? `\nE-mail: ${email}` : '';
+      const msg = encodeURIComponent(
+        `OlÃ¡ Alessandro! Me chamo ${nome}.\n` +
+        `CNPJ ativo: ${cnpj}\n` +
+        `Vidas para cobertura: ${vidas}\n` +
+        `Operadora atual: ${operadora}\n` +
+        `Meu WhatsApp: ${telefone}${emailLine}\n\n` +
+        `Gostaria de uma cotaÃ§Ã£o gratuita.`
+      );
+      window.open(`https://wa.me/${numero}?text=${msg}`, '_blank');
+    });
+  </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vortex Seguros | Planos de Saúde para Profissionais Liberais</title>
   <meta name="description" content="Especialistas em planos de saúde por CNPJ para médicos e profissionais liberais. Troque de plano sem complicação e com a rede que você merece." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
